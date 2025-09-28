@@ -55,10 +55,10 @@ function App() {
             All
           </button>
           <button
-            className={filter === "Work" ? "active" : ""}
-            onClick={() => setFilter("Work")}
+            className={filter === "Home" ? "active" : ""}
+            onClick={() => setFilter("Home")}
           >
-            Work
+            Home
           </button>
           <button
             className={filter === "School" ? "active" : ""}
@@ -71,6 +71,12 @@ function App() {
             onClick={() => setFilter("Personal")}
           >
             Personal
+          </button>
+          <button
+            className={filter === "Organization" ? "active" : ""}
+            onClick={() => setFilter("Organization")}
+          >
+            Organization
           </button>
         </aside>
 
