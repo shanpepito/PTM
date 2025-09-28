@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// For Inputting Tasks and Selecting Category and Deadline
 function TaskInput({ onAdd }) {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("General");
@@ -28,12 +29,13 @@ function TaskInput({ onAdd }) {
         className="category-select"
       >
         <option value="General">General</option>
-        <option value="Work">Work</option>
+        <option value="Home">Home</option>
         <option value="School">School</option>
         <option value="Personal">Personal</option>
+        <option value="Organization">Organization</option>
+        <option value="Other">Other</option>
       </select>
 
-      {/* Deadline calendar input */}
       <input
         type="date"
         value={deadline}

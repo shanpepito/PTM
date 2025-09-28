@@ -1,5 +1,6 @@
 import React from "react";
 
+// For Displaying Individual Task Item
 function TaskItem({ task, onToggle, onDelete }) {
   return (
     <li className={`task-item ${task.completed ? "completed" : ""}`}>

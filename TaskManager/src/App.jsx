@@ -8,7 +8,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("All");
 
-  // Load tasks from localStorage
+  // Load from localStorage
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(saved);
@@ -35,7 +35,7 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  // Filter logic
+  // Filter tasks based on selected category
   const filteredTasks = tasks.filter((task) =>
     filter === "All" ? true : task.category === filter
   );
@@ -45,7 +45,7 @@ function App() {
       <h1 className="title">📋 Task Manager</h1>
 
       <div className="app-content">
-        {/* Sidebar inside app-container */}
+        {/* Sidebar Category Button */}
         <aside className="sidebar">
           <h2>Categories</h2>
           <button
@@ -74,11 +74,11 @@ function App() {
           </button>
         </aside>
 
-        {/* Main tasks section */}
+        {/* Main Tasks Section */}
         <div className="task-section">
           <TaskInput onAdd={addTask} />
           
-          {/* Tasks */}
+          {/* Task Lists */}
           <div className="tasks-panel">
             <TaskList
               title="Tasks"
@@ -88,7 +88,7 @@ function App() {
             />
           </div>
 
-          {/* Completed */}
+          {/* Completed Tasks */}
           <div className="completed-panel">
             <TaskList
               title="Completed"
