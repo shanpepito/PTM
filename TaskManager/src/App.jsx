@@ -19,8 +19,8 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (text, category) => {
-    setTasks([...tasks, { id: Date.now(), text, category, completed: false }]);
+  const addTask = (text, category, deadline) => {
+    setTasks([...tasks, { id: Date.now(), text, category, deadline, completed: false }]);
   };
 
   const toggleTask = (id) => {
@@ -41,54 +41,63 @@ function App() {
   );
 
   return (
-    <div className="app-layout">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <h2>Categories</h2>
-        <button
-          className={filter === "All" ? "active" : ""}
-          onClick={() => setFilter("All")}
-        >
-          All
-        </button>
-        <button
-          className={filter === "Work" ? "active" : ""}
-          onClick={() => setFilter("Work")}
-        >
-          Work
-        </button>
-        <button
-          className={filter === "School" ? "active" : ""}
-          onClick={() => setFilter("School")}
-        >
-          School
-        </button>
-        <button
-          className={filter === "Personal" ? "active" : ""}
-          onClick={() => setFilter("Personal")}
-        >
-          Personal
-        </button>
-      </aside>
+    <div className="app-container">
+      <h1 className="title">📋 Task Manager</h1>
 
-      {/* Main content */}
-      <div className="app-container">
-        <h1 className="title">📋 Task Manager</h1>
-        <TaskInput onAdd={addTask} />
+      <div className="app-content">
+        {/* Sidebar inside app-container */}
+        <aside className="sidebar">
+          <h2>Categories</h2>
+          <button
+            className={filter === "All" ? "active" : ""}
+            onClick={() => setFilter("All")}
+          >
+            All
+          </button>
+          <button
+            className={filter === "Work" ? "active" : ""}
+            onClick={() => setFilter("Work")}
+          >
+            Work
+          </button>
+          <button
+            className={filter === "School" ? "active" : ""}
+            onClick={() => setFilter("School")}
+          >
+            School
+          </button>
+          <button
+            className={filter === "Personal" ? "active" : ""}
+            onClick={() => setFilter("Personal")}
+          >
+            Personal
+          </button>
+        </aside>
 
-        <TaskList
-          title="Tasks"
-          tasks={filteredTasks.filter((t) => !t.completed)}
-          onToggle={toggleTask}
-          onDelete={deleteTask}
-        />
+        {/* Main tasks section */}
+        <div className="task-section">
+          <TaskInput onAdd={addTask} />
+          
+          {/* Tasks */}
+          <div className="tasks-panel">
+            <TaskList
+              title="Tasks"
+              tasks={filteredTasks.filter((t) => !t.completed)}
+              onToggle={toggleTask}
+              onDelete={deleteTask}
+            />
+          </div>
 
-        <TaskList
-          title="Completed"
-          tasks={filteredTasks.filter((t) => t.completed)}
-          onToggle={toggleTask}
-          onDelete={deleteTask}
-        />
+          {/* Completed */}
+          <div className="completed-panel">
+            <TaskList
+              title="Completed"
+              tasks={filteredTasks.filter((t) => t.completed)}
+              onToggle={toggleTask}
+              onDelete={deleteTask}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

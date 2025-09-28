@@ -3,12 +3,14 @@ import React, { useState } from "react";
 function TaskInput({ onAdd }) {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("General");
+  const [deadline, setDeadline] = useState("");
 
   const handleAdd = () => {
     if (text.trim() === "") return;
-    onAdd(text, category);
+    onAdd(text, category, deadline);
     setText("");
     setCategory("General");
+    setDeadline("");
   };
 
   return (
@@ -30,6 +32,14 @@ function TaskInput({ onAdd }) {
         <option value="School">School</option>
         <option value="Personal">Personal</option>
       </select>
+
+      {/* Deadline calendar input */}
+      <input
+        type="date"
+        value={deadline}
+        onChange={(e) => setDeadline(e.target.value)}
+        className="date-input"
+      />
 
       <button onClick={handleAdd}>Add</button>
     </div>

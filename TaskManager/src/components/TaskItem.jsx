@@ -10,7 +10,11 @@ function TaskItem({ task, onToggle, onDelete }) {
           onChange={() => onToggle(task.id)}
         />
         <span>
-          {task.text} <small className="category">[{task.category}]</small>
+          {task.text}{" "}
+          <small className="category">[{task.category}]</small>
+          {task.deadline && (
+            <small className="deadline"> ⏰ {task.deadline}</small>
+          )}
         </span>
       </label>
       <button className="delete-btn" onClick={() => onDelete(task.id)}>
